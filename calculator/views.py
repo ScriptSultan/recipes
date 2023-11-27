@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
 DATA = {
@@ -16,7 +17,6 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
-    # можете добавить свои рецепты ;)
 }
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
@@ -34,8 +34,18 @@ def menu(request):
     count = request.GET.get('count', 1)
     recept = request.GET.get('recept')
     print(recept)
-    recipe = DATA[recept]
-    for ingredient, amount in recipe.items():
-        print(ingredient, amount)
+    recipe = DATA[str(recept)]
+    print(recipe)
     context = {recept: recipe, "count": int(count)}
     return render(request, 'calculator/index.html', context)
+
+# def menu(request, name):
+#     count = int(request.GET.get('count', '1'))
+#     ingredients = DATA.get(name, None)
+#     for ingrid in ingredients:
+#         ingredients[ingrid] *= count
+#     context = {
+#         'recipe': ingredients,
+#     }
+#     return render(request, 'calculator/index.html', context)
+

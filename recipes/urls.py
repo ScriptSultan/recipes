@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('omlet/', omlet),
     #path('pasta/', pasta),
-    path('menu/', menu)
+    path('menu/', menu, name='menu')
 ]
