@@ -19,9 +19,6 @@ from django.urls import path
 from calculator.views import menu
 
 urlpatterns = [
-    # здесь зарегистрируйте вашу view-функцию
     path('admin/', admin.site.urls),
-    #path('omlet/', omlet),
-    #path('pasta/', pasta),
-    path('menu/', menu, name='menu')
+    path('<str:name>/', menu)
 ]

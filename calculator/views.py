@@ -30,22 +30,22 @@ DATA = {
 # }
 
 
-def menu(request):
-    count = request.GET.get('count', 1)
-    recept = request.GET.get('recept')
-    print(recept)
-    recipe = DATA[str(recept)]
-    print(recipe)
-    context = {recept: recipe, "count": int(count)}
-    return render(request, 'calculator/index.html', context)
-
-# def menu(request, name):
-#     count = int(request.GET.get('count', '1'))
-#     ingredients = DATA.get(name, None)
-#     for ingrid in ingredients:
-#         ingredients[ingrid] *= count
-#     context = {
-#         'recipe': ingredients,
-#     }
+# def menu(request):
+#     count = request.GET.get('count', 1)
+#     recept = request.GET.get('recept')
+#     print(recept)
+#     recipe = DATA[str(recept)]
+#     print(recipe)
+#     context = {recept: recipe, "count": int(count)}
 #     return render(request, 'calculator/index.html', context)
+
+def menu(request, name):
+    count = int(request.GET.get('count', '1'))
+    ingredients = DATA.get(name, None)
+    for ingrid in ingredients:
+        ingredients[ingrid] = ingredients[ingrid] * count
+    context = {
+        'recipe': ingredients
+    }
+    return render(request, 'calculator/index.html', context)
 
